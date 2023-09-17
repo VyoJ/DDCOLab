@@ -1,0 +1,75 @@
+#! /c/iverilog/bin/vvp
+:ivl_version "0.9.7 " "(v0_9_7)";
+:vpi_time_precision + 0;
+:vpi_module "system";
+:vpi_module "v2005_math";
+:vpi_module "va_math";
+S_011B3E18 .scope module, "tb_simple_circuit2" "tb_simple_circuit2" 2 1;
+ .timescale 0 0;
+v011BEEE0_0 .var "A", 0 0;
+v011BEF38_0 .var "B", 0 0;
+v011BEF90_0 .var "C", 0 0;
+v011B89A0_0 .net "D", 0 0, L_011B8A68; 1 drivers
+S_011B3108 .scope module, "c1" "simple_circuit2" 2 4, 3 1, S_011B3E18;
+ .timescale 0 0;
+L_011B3EA0 .functor AND 1, v011BEF38_0, v011BEF90_0, C4<1>, C4<1>;
+L_011B8A68 .functor OR 1, L_011B3EA0, v011BEEE0_0, C4<0>, C4<0>;
+v011B3190_0 .net "A", 0 0, v011BEEE0_0; 1 drivers
+v011B31E8_0 .net "B", 0 0, v011BEF38_0; 1 drivers
+v011BEDD8_0 .net "C", 0 0, v011BEF90_0; 1 drivers
+v011BEE30_0 .alias "D", 0 0, v011B89A0_0;
+v011BEE88_0 .net "W1", 0 0, L_011B3EA0; 1 drivers
+    .scope S_011B3E18;
+T_0 ;
+    %delay 0, 0;
+    %set/v v011BEEE0_0, 0, 1;
+    %set/v v011BEF38_0, 0, 1;
+    %set/v v011BEF90_0, 0, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 0, 1;
+    %set/v v011BEF38_0, 0, 1;
+    %set/v v011BEF90_0, 1, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 0, 1;
+    %set/v v011BEF38_0, 1, 1;
+    %set/v v011BEF90_0, 0, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 0, 1;
+    %set/v v011BEF38_0, 1, 1;
+    %set/v v011BEF90_0, 1, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 1, 1;
+    %set/v v011BEF38_0, 0, 1;
+    %set/v v011BEF90_0, 0, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 1, 1;
+    %set/v v011BEF38_0, 0, 1;
+    %set/v v011BEF90_0, 1, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 1, 1;
+    %set/v v011BEF38_0, 1, 1;
+    %set/v v011BEF90_0, 0, 1;
+    %delay 5, 0;
+    %set/v v011BEEE0_0, 1, 1;
+    %set/v v011BEF38_0, 1, 1;
+    %set/v v011BEF90_0, 1, 1;
+    %delay 5, 0;
+    %end;
+    .thread T_0;
+    .scope S_011B3E18;
+T_1 ;
+    %vpi_call 2 21 "$monitor", $time, " A=%b, B=%b, C=%b, D=%b", v011BEEE0_0, v011BEF38_0, v011BEF90_0, v011B89A0_0;
+    %end;
+    .thread T_1;
+    .scope S_011B3E18;
+T_2 ;
+    %vpi_call 2 25 "$dumpfile", "simple_circuit2.vcd";
+    %vpi_call 2 26 "$dumpvars", 1'sb0, S_011B3108;
+    %end;
+    .thread T_2;
+# The file index is used to find the file name in the following table.
+:file_names 4;
+    "N/A";
+    "<interactive>";
+    "tb_simple_circuit2.v";
+    "simple_circuit2.v";
